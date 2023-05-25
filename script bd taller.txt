@@ -1,0 +1,67 @@
+create table sexos(
+id_sex number not null,
+nom_sex varchar2(20) not null,
+primary key(id_sex)
+);
+
+create table departamentos(
+id_depto number not null,
+nom_depto varchar2(30),
+primary key(id_depto)
+);
+
+create table trabajadores(
+rut_trabajador varchar2(12) not null,
+nom_trabajador varchar2(20) not null,
+ape_trabajador varchar2(20) not null,
+id_depto number not null,
+id_sex number not null,
+primary key(rut_trabajador),
+foreign key(id_sex) references sexos(id_sex),
+foreign key(id_depto) references departamentos(id_depto)
+);
+
+create table carga_trabajadores(
+rut_carga varchar2(12) not null,
+nom_carga varchar2(20) not null,
+ape_carga varchar2(20) not null,
+parentesco_carga varchar2(30) not null,
+fec_nac date not null,
+rut_trabajador varchar2(12) not null,
+primary key(rut_carga),
+foreign key(rut_trabajador) references trabajadores(rut_trabajador)
+);
+
+create table contacto_emergencia(
+id_contacto number not null,
+nom_contacto varchar2(20) not null,
+ape_contacto varchar2(20) not null,
+rut_trabajador varchar2(12) not null,
+primary key(id_contacto),
+foreign key(rut_trabajador) references trabajadores(rut_trabajador)
+);
+
+create table ficha_trabajadores(
+id_ficha number not null,
+direccion varchar2(50) not null,
+fec_nac date not null,
+fec_contratacion date not null,
+salario number not null,
+rut_trabajador varchar2(12),
+primary key(id_ficha),
+foreign key(rut_trabajador) references trabajadores(rut_trabajador)
+);
+
+select * from sexos;
+select * from departamentos;
+select * from trabajadores;
+select * from carga_trabajadores;
+select * from contacto_emergencia;
+select * from ficha_trabajadores;
+
+drop table ficha_trabajadores;
+drop table contacto_emergencia;
+drop table carga_trabajadores;
+drop table trabajadores;
+drop table departamentos;
+drop table sexos;
