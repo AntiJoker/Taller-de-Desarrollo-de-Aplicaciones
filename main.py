@@ -44,6 +44,22 @@ class Menu(DAO):
         # else:
         #     print("Intente nuevamente")
             
-    def crearFichas(self):
-                
+class Ficha():
+    def __init__(self):
+        self.__id = 0
+        self.__dir = ""
+        self.__fecnac = ""
+        self.__feccon = ""
+        self.__sal = 0
+        self.__rut = ""
     
+    def setterRut(self, rut):
+        self.__rut = rut
+        
+    
+    def crearFicha(self):
+        rut = input("Ingrese RUT del trabajador")
+        self.setterRut(rut)
+        dir = input("Ingrese direccion del trabajador: ")
+        self.setterdir(dir)
+        
